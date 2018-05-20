@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.djdenpa.joke_receptacle.JokeReceiverActivity;
@@ -34,14 +35,18 @@ public class MainActivityFragment extends Fragment implements AsyncTaskWaitingIn
 
     @BindView(R.id.b_tell_joke)
     Button mTellJoke;
+    @BindView(R.id.ll_loading_joke)
+    LinearLayout mLoadingLayout;
 
     Context mContext;
+    MainActivityFragment mThis;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         mContext = getContext();
+        mThis = this;
 
         ButterKnife.bind(this, root );
 
@@ -54,10 +59,15 @@ public class MainActivityFragment extends Fragment implements AsyncTaskWaitingIn
                 .build();
         mAdView.loadAd(adRequest);
 
-        final EndpointsAsyncTask task = new EndpointsAsyncTask(this);
         mTellJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mLoadingLayout.setVisibility(View.VISIBLE);
+                mTellJoke.setClickable(false);
+                mTellJoke.setEnabled(false);
+
+                EndpointsAsyncTask task = new EndpointsAsyncTask(mThis);
                 task.execute(mContext);
 
                 //JokingJoker joker = new JokingJoker();
@@ -72,17 +82,23 @@ public class MainActivityFragment extends Fragment implements AsyncTaskWaitingIn
 
     @Override
     public void preAsyncTask() {
-        mTellJoke.setClickable(false);
-        //mTellJoke.setEnabled(false);
     }
 
     @Override
     public void postAsyncTask() {
-        mTellJoke.setClickable(true);
-        //mTellJoke.setEnabled(true);
     }
 
-//    public void launchJokeActivity(String joke) {
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //Because only main thread can affect views
+        mLoadingLayout.setVisibility(View.GONE);
+        mTellJoke.setClickable(true);
+        mTellJoke.setEnabled(true);
+    }
+
+    //    public void launchJokeActivity(String joke) {
 //        Intent intent = new Intent(mContext, JokeReceiverActivity.class);
 //        intent.putExtra(JokeReceiverActivity.EXTRA_JOKE, joke);
 //        startActivity(intent);
