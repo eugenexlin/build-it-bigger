@@ -75,8 +75,12 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
-    Intent intent = new Intent(context, JokeReceiverActivity.class);
-    intent.putExtra(JokeReceiverActivity.EXTRA_JOKE, result);
+//    Intent intent = new Intent(context, JokeReceiverActivity.class);
+//    intent.putExtra(JokeReceiverActivity.EXTRA_JOKE, result);
+//    context.startActivity(intent);
+
+    // nice suggestion by anonymous reviewer
+    Intent intent = JokeReceiverActivity.generateIntent(context, result);
     context.startActivity(intent);
   }
 

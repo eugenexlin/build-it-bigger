@@ -1,5 +1,6 @@
 package com.djdenpa.joke_receptacle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +12,8 @@ import android.widget.TextView;
  */
 
 public class JokeReceiverActivity extends AppCompatActivity {
-  public static final String EXTRA_JOKE = "com.djdenpa.joke_receptacle_EXTRA_JOKE";
 
-
+  protected static final String EXTRA_JOKE = "com.djdenpa.joke_receptacle_EXTRA_JOKE";
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +31,13 @@ public class JokeReceiverActivity extends AppCompatActivity {
       tv_joke.setText(message);
     }
 
+  }
+
+  // nice suggestion by anonymous reviewer
+  public static Intent generateIntent(Context context, String joke){
+    Intent intent = new Intent(context, JokeReceiverActivity.class);
+    intent.putExtra(JokeReceiverActivity.EXTRA_JOKE, joke);
+    return intent;
   }
 
 
