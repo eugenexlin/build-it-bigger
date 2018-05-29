@@ -1,10 +1,23 @@
 Warning: Google App Engine Java 7 runtime is deprecated.
 Warning: See https://cloud.google.com/appengine/docs/deprecations/java7
-May 02, 2018 7:04:35 PM java.util.prefs.WindowsPreferences <init>
+May 28, 2018 4:27:48 PM java.util.prefs.WindowsPreferences <init>
 WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.
-May 02, 2018 7:04:35 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
-INFO: Overwriting system property key 'java.util.logging.config.file', value 'C:\Users\Eugene\AppData\Local\Google\Cloud SDK\google-cloud-sdk\platform\google_appengine\google\appengine\tools\java\config\sdk\logging.properties' with value 'WEB-INF/logging.properties' from 'C:\Users\Eugene\build-it-bigger\backend\build\exploded-backend\WEB-INF\appengine-web.xml'
+May 28, 2018 4:27:49 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
+INFO: Overwriting system property key 'java.util.logging.config.file', value 'C:\Users\denpa\AppData\Local\Google\Cloud SDK\google-cloud-sdk\platform\google_appengine\google\appengine\tools\java\config\sdk\logging.properties' with value 'WEB-INF/logging.properties' from 'C:\Users\denpa\StudioProjects\BuildItBigger\build-it-bigger\backend\build\exploded-backend\WEB-INF\appengine-web.xml'
+May 28, 2018 4:27:49 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFO: Logging to JettyLogger(null) via com.google.apphosting.utils.jetty.JettyLogger
+May 28, 2018 11:27:49 PM com.google.appengine.tools.development.IsolatedAppClassLoader checkWorkingDirectory
+WARNING: Your working directory, (C:\Users\denpa\StudioProjects\BuildItBigger\build-it-bigger) is not equal to your 
+web application root (C:\Users\denpa\StudioProjects\BuildItBigger\build-it-bigger\backend\build\exploded-backend)
+You will not be able to access files from your working directory on the production server.
 
-************************************************
-Could not open the requested socket: Address already in use: bind
-Try overriding --address and/or --port.
+May 28, 2018 11:27:50 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFO: jetty-6.1.x
+May 28, 2018 11:27:51 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFO: Started SelectChannelConnector@localhost:8080
+May 28, 2018 11:27:51 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: Module instance default is running at http://localhost:8080/
+May 28, 2018 11:27:51 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: The admin console is running at http://localhost:8080/_ah/admin
+May 28, 2018 4:27:51 PM com.google.appengine.tools.development.DevAppServerImpl doStart
+INFO: Dev App Server is now running

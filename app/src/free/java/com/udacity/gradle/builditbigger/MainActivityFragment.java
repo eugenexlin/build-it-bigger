@@ -85,7 +85,7 @@ public class MainActivityFragment extends Fragment implements AsyncTaskWaitingIn
     }
 
     @Override
-    public void postAsyncTask() {
+    public void postAsyncTask(String result) {
     }
 
     @Override

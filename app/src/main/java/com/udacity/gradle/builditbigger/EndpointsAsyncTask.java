@@ -32,10 +32,7 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     mCallback = callback;
   }
 
-
-  @Override
-  protected String doInBackground(Context... param) {
-    mCallback.preAsyncTask();
+  protected void tryInit(){
     if(myApiService == null) {  // Only do this once
       MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
               new AndroidJsonFactory(), null)
@@ -53,11 +50,20 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
       myApiService = builder.build();
     }
+  }
+  protected String tryGet() throws IOException {
+    return myApiService.getJoke().execute().getData();
+  }
+
+  @Override
+  protected String doInBackground(Context... param) {
+    mCallback.preAsyncTask();
+    tryInit();
 
     context = param[0];
 
     try {
-      return myApiService.getJoke().execute().getData();
+      return tryGet();
     } catch (IOException e) {
       return e.getMessage();
     }
@@ -65,7 +71,7 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
   @Override
   protected void onPostExecute(String result) {
-    mCallback.postAsyncTask();
+    mCallback.postAsyncTask(result);
 
     //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
